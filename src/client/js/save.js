@@ -4,7 +4,7 @@ const main = document.querySelector("main");
 const canvas = document.querySelector("#canvas");
 const saveForm = document.querySelector(".save__container");
 const saveBtn = document.querySelector(".save_btn");
-const installerContainer = document.querySelector(".section1");
+const installerContainer = document.querySelector(".drawingless");
 
 const ACTIVE_CLASS = "active";
 let id, imageUrl;
@@ -30,7 +30,6 @@ async function handleSubmit() {
     arImg,
     updatePaint: { square, img, circle, straight, floor } || null,
   };
-  console.log(imgObj.updatePaint);
   const res = await fetch(`/api/installer/${id}/save`, {
     method: "POST",
     headers: {
@@ -64,4 +63,5 @@ function init() {
   saveBtn.addEventListener("click", handleSaveBtn);
 }
 
+console.log(id);
 init();

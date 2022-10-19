@@ -11,8 +11,7 @@ const installerSchema = new mongoose.Schema({
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // 누가 작성했는지
   createAt: { type: Date, default: Date.now },
   comment: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
-  // furniture: [{ type: mongoose.Schema.Types.ObjectId, ref: "Furniture" }], //가구
-  // fplan: { type: Boolean, default: false }, //도면
+  rank: { type: mongoose.Schema.Types.ObjectId, ref: "Rank" },
 });
 
 const Installer = mongoose.model("Installer", installerSchema);

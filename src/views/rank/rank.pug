@@ -1,9 +1,14 @@
 extends ../base
 include ../mixins/rank_installer.pug
+include ../mixins/rank.pug
 
 block content
     if userInstaller
-        //- 그냥 랭킹 출력
-        each item in userInstaller
-            +installer(item)
-    //- 이미지 출력(내가했던)
+        section
+            each item in userInstaller
+                +installer(item)
+        hr
+    if rank
+        section
+            each item in rank
+                +rank(item)

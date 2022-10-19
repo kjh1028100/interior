@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
 const rankSchema = new mongoose.Schema({
-  installer: { type: mongoose.Schema.Types.ObjectId, ref: "Installer" },
-  rank: { type: Number, default: 0 },
-  imgUrl: { type: String, trim: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: "Installer" },
+  imgUrl: { type: String, trim: true, require: true },
   description: { type: String, trim: true },
-  createAt: { type: String, trim: true },
+  createAt: { type: Date, default: Date.now, trim: true },
+  score: { type: Number, default: 0 },
 });
 
 const Rank = mongoose.model("Rank", rankSchema);

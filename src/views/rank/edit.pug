@@ -1,0 +1,24 @@
+extends ../base
+block content
+        if rank
+        section
+            img(src="/"+rank.imgUrl,width="500px")
+            h3=rank.owner.title
+            a(href="/user/"+rank.user._id)=rank.user.username
+            br
+            .commentviews
+                ul
+                    li
+                        small #{new Date(rank.createAt).toLocaleString("ko-kr",{weekday:"long", year:"numeric", month:"2-digit", day:"2-digit"})}
+                    li
+                        small views: #{rank.owner.meta.view <= 0 ? `${rank.owner.meta.view} view` : `${rank.owner.meta.view} views`}
+                    li
+                        small like: #{rank.owner.meta.like <= 0 ? `${rank.owner.meta.like} like` : `${rank.owner.meta.like} likes`}
+        section
+            form(method="POST",enctype="multipart/form-data")
+                label(for="interior") 인테리어 사진
+                input(type="file", name="interior",accept="image/*",id="interior")
+                div
+                    textarea(name="description", cols="30", rows="10",placeholder="write description")
+                input(type="submit",value="제출")
+block script

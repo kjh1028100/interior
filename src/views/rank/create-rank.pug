@@ -1,0 +1,22 @@
+extends ../base
+block content
+    if installer
+        section.installer(data-installer-id=installer._id)
+            img(src=installer.resulturl,width="500px").installer__img
+            h3=installer.title
+            a(href="/user/"+installer.owner._id)=installer.owner.username
+            br
+            .commentviews
+                ul
+                    li
+                        small views: #{installer.meta.view <= 0 ? `${installer.meta.view} view` : `${installer.meta.view} views`}
+                    li
+                        small like: #{installer.meta.like <= 0 ? `${installer.meta.like} like` : `${installer.meta.like} likes`}
+        section
+            form(method="POST",enctype="multipart/form-data")
+                label(for="interior") 인테리어 사진
+                input(type="file", name="interior",accept="image/*",id="interior")
+                div
+                    textarea(name="description", cols="30", rows="10",placeholder="write description")
+                input(type="submit",value="제출")
+block script

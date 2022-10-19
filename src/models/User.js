@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
   notice: [{ type: mongoose.Schema.Types.ObjectId, ref: "Notice" }],
   Installer: [{ type: mongoose.Schema.Types.ObjectId, ref: "Installer" }],
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+  rank: [{ type: mongoose.Schema.Types.ObjectId, ref: "Rank" }],
 });
 
 // 1.암호화
