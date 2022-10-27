@@ -4,7 +4,7 @@ const main = document.querySelector("main");
 const canvas = document.querySelector("#canvas");
 const saveForm = document.querySelector(".save__container");
 const saveBtn = document.querySelector(".save_btn");
-const installerContainer = document.querySelector(".drawingless");
+const installerContainer = document.querySelector(".section1");
 
 const ACTIVE_CLASS = "active";
 let id, imageUrl;
@@ -20,6 +20,7 @@ function redirectHome() {
 
 async function handleSubmit() {
   const title = document.querySelector(".save__container input").value;
+  console.log(title);
   const imgObj = {
     title,
     imageUrl,
@@ -63,5 +64,4 @@ function init() {
   saveBtn.addEventListener("click", handleSaveBtn);
 }
 
-console.log(id);
 init();

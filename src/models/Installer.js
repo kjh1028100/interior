@@ -11,7 +11,7 @@ const installerSchema = new mongoose.Schema({
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // 누가 작성했는지
   createAt: { type: Date, default: Date.now },
   comment: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
-  rank: { type: mongoose.Schema.Types.ObjectId, ref: "Rank" },
+  rank: [{ type: mongoose.Schema.Types.ObjectId, ref: "Rank" }],
 });
 
 const Installer = mongoose.model("Installer", installerSchema);

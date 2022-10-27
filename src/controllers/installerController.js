@@ -3,7 +3,7 @@ import User from "../models/User";
 import Comment from "../models/Comment";
 import { SubShape, ImgShape, backUpdatePaint } from "../models/PaintClass";
 import Paint from "../models/Paint";
-
+import Rank from "../models/Rank";
 const ErrorStatusCode = 404;
 const ErrorStatusCode1 = 400;
 const CorrectStatusCode = 201;
@@ -372,14 +372,22 @@ export const deleteInstaller = async (req, res) => {
   const findInstaller = user.Installer.find(
     (el) => String(el.owner._id) === String(_id)
   );
-  const installer = await Installer.findById(findInstaller._id).populate(
-    "paint"
-  );
+  const installer = await Installer.findById(findInstaller._id)
+    .populate("paint")
+    .populate("rank");
   installer.paint
     .filter((el) => String(el.owner._id) === String(installer._id))
     .forEach(async (el) => {
       await Paint.findByIdAndDelete(el._id);
     });
+  console.log(installer.rank);
+  if (installer.rank.length !== 0) {
+    installer.rank
+      .filter((el) => String(el.owner._id) === String(installer._id))
+      .forEach(async (el) => {
+        await Rank.findByIdAndDelete(el._id);
+      });
+  }
   const index = user.Installer.indexOf(findInstaller);
   user.Installer.splice(index, 1);
   await Installer.findByIdAndDelete(findInstaller._id);

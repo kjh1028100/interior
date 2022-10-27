@@ -9,11 +9,15 @@ export const getRank = async (req, res) => {
   const rank = await Rank.find({})
     .sort({ score: "-1", createAt: "-1" })
     .populate("owner");
+  const rankUser = await User.findById(user._id).populate("Installer");
+  if (rankUser.Installer.length === 0) {
+    console.log(rank);
+    return res.render("rank/rank", {
+      pageTitle: "Ranking",
+      rank,
+    });
+  }
   if (user) {
-    const rankUser = await User.findById(user._id).populate("Installer");
-    if (!rankUser) {
-      return res.render("rank/rank", { pageTitle: "Ranking" });
-    }
     return res.render("rank/rank", {
       pageTitle: "Ranking",
       userInstaller: rankUser.Installer,
@@ -68,7 +72,7 @@ export const postCreate = async (req, res) => {
   const curScore = currRankView + currRankLike;
   rank.score = curScore;
   await rank.save();
-  interior.rank = rank;
+  interior.rank.push(rank);
   curUser.rank.push(rank);
   await interior.save();
   await curUser.save();

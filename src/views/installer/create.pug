@@ -1,5 +1,7 @@
 extends ../base.pug
 block content
+  main
+    .section1(data-user-id=`${findInstaller ? `${findInstaller._id}` : `${user._id}`}`)
       .drawingless(data-paints=paints)
         .function
           .container
@@ -63,43 +65,43 @@ block content
                 .furniture
                   .furniture_1
                     button#image11
-                      img(src='http://localhost:5555/uploads/의자1.JPG')
+                      img(src='의자1.JPG')
                     button#image1(onclick='imagemenu1();') 회전
                     .image10(onclick='imagemenu1();')
                       button#image11
-                        img(src='http://localhost:5555/uploads/의자1.JPG')
+                        img(src='의자1.JPG')
                       button#image12
-                        img(src='http://localhost:5555/uploads/의자2.JPG')
+                        img(src='의자2.JPG')
                       button#image13
-                        img(src='http://localhost:5555/uploads/의자3.JPG')
+                        img(src='의자3.JPG')
                       button#image14
-                        img(src='http://localhost:5555/uploads/의자4.JPG')
+                        img(src='의자4.JPG')
                   .furniture_2
                     button#image21
-                      img(src='http://localhost:5555/uploads/책상1.JPG')
+                      img(src='책상1.JPG')
                     button#image2(onclick='imagemenu2();') 회전
                     .image20(onclick='imagemenu2();')
                       button#image21
-                        img(src='http://localhost:5555/uploads/책상1.JPG')
+                        img(src='책상1.JPG')
                       button#image22
-                        img(src='http://localhost:5555/uploads/책상2.JPG')
+                        img(src='책상2.JPG')
                       button#image23
-                        img(src='http://localhost:5555/uploads/책상3.JPG')
+                        img(src='책상3.JPG')
                       button#image24
-                        img(src='http://localhost:5555/uploads/책상4.JPG')
+                        img(src='책상4.JPG')
                   .furniture_3
                     button#image31
-                      img(src='http://localhost:5555/uploads/침대1.JPG')
+                      img(src='침대1.JPG')
                     button#image3(onclick='imagemenu3();') 회전
                     .image30(onclick='imagemenu3();')
                       button#image31
-                        img(src='http://localhost:5555/uploads/침대1.JPG')
+                        img(src='침대1.JPG')
                       button#image32
-                        img(src='http://localhost:5555/uploads/침대2.JPG')
+                        img(src='침대2.JPG')
                       button#image33
-                        img(src='http://localhost:5555/uploads/침대3.JPG')
+                        img(src='침대3.JPG')
                       button#image34
-                        img(src='http://localhost:5555/uploads/침대4.JPG')
+                        img(src='침대4.JPG')
             #tab-3.tab-content
               .function_text
                 button#jsText 텍스트
