@@ -6,20 +6,22 @@ export const getRank = async (req, res) => {
   const {
     session: { user },
   } = req;
-  if (!user) {
-    return res.render("rank/rank", { pageTitle: "Ranking" });
-  }
-  const rankUser = await User.findById(user._id).populate("Installer");
-  if (!rankUser) {
-    return res.render("rank/rank", { pageTitle: "Ranking" });
-  }
   const rank = await Rank.find({})
     .sort({ score: "-1", createAt: "-1" })
     .populate("owner");
-  console.log(rank);
+  if (user) {
+    const rankUser = await User.findById(user._id).populate("Installer");
+    if (!rankUser) {
+      return res.render("rank/rank", { pageTitle: "Ranking" });
+    }
+    return res.render("rank/rank", {
+      pageTitle: "Ranking",
+      userInstaller: rankUser.Installer,
+      rank,
+    });
+  }
   return res.render("rank/rank", {
     pageTitle: "Ranking",
-    userInstaller: rankUser.Installer,
     rank,
   });
 };
